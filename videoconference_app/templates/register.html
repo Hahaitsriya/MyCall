@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+<body>
+  <div class="container">
+    <img id="logo" src="{% static 'images/chat-icon.png' %}" style="padding-right: 70px;"/>
+    <div class="registration form">
+      <div id="welcome-message">
+        <h3 style="padding-left: 20px;">Experience MyCall: Seamless Communication, Simplified </h3>
+        <hr>
+        <h2 style="padding-left: 180px;">Sign Up</h2>
+    </div>
+    <form action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
+      <div class="form-field">
+        <input type="text" placeholder="Enter your first name" name="first_name" style="text-transform:uppercase">
+      </div> 
+      <br>
+      <div class="form-field">
+        <input type="text" placeholder="Enter your last name" name="last_name" style="text-transform:uppercase">
+      </div> 
+      <br>
+      <div class="form-field">
+        <input type="text" placeholder="Enter your email" name="email" style="text-transform:uppercase">
+      </div> 
+      <br>
+      <div class="form-field">
+        <input type="password" placeholder="Create a password" name="password1" style="text-transform:uppercase">
+      </div> 
+      <br>
+      <div class="form-field">
+        <input type="password" placeholder="Confirm your password" name="password2" style="text-transform:uppercase">
+      </div> 
+      <br>
+      <div class="form-field">
+        <input type="submit" class="button" value="Signup">
+      </div>
+      <center>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+      </center> 
+    </form>
+    <br>
+    <div class="signup">
+      <span class="signup" style="display: block; text-align: left; color: white; font-size: larger;">Already have an account?
+       <label for="check"><a href="{% url 'login' %}" style="color: white;">Sign In</a></label>
+      </span>
+    </div>
+  </div>
+</body>
+{% endblock content %}

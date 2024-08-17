@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+  <body>
+    <div class="container">
+      <img id="logo" src="{% static 'images/chat-icon.png' %}" style="padding-right: 70px;"/>
+      <div class="dashboard">
+        <div id="welcome-message">
+          <h2 style="padding-left: 100px;">Welcome, {{name}} !!!</h2>
+          <h3 style="padding-left: 20px;">User-Centric Dashboard: Tailored for Your Needs </h3>
+      </div>
+      <div class="form-field">
+        <a href="{% url 'meeting' %}" class="btn">New Meeting</a>
+      </div>
+      <div class="form-field">
+        <a href="{% url 'join_room' %}" class="btn">Join Meeting</a>
+      </div>     
+      <div class="form-field">
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
+      </div>   
+    </div>  
+  </body>
+{% endblock content %}

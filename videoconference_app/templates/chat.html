@@ -1,0 +1,51 @@
+<!-- chat_room.html -->
+{% extends 'main.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<!-- chat/templates/chat/quick_chat.html -->
+<!DOCTYPE html>
+<html>
+<body>
+    <section id="form-container">
+        <div id="welcome-message">
+            <h1>Get Help</h1>
+            <p>Connecting You, Anytime</p>
+        </div>
+        <div id="chat-box">
+            <!-- Chat messages and responses will appear here -->
+        </div>
+        <form id="chat-form" method="post">
+            {% csrf_token %}
+            <input type="text" id="message" name="message" placeholder="Type your message here" autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    // jQuery script for handling form submission and displaying responses
+    $(document).ready(function() {
+        $('#chat-form').submit(function(event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'quick_chat' %}",
+                data: formData,
+                dataType: "json",
+                success: function(response) {
+                    $('#chat-box').append('<p><strong><span style="color: white;">Reply:</strong></span> <span style="color: white;">'+ response.message  + '</span></p>');
+                    $('#message').val('');
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
+
+{% endblock content %}

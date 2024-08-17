@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+<body>
+  <main>
+      <section id="form-container">
+        <img id="logo" src="{% static 'images/chat-icon.png' %}"/>
+
+        <div id="welcome-message">
+            <h1>Welcome to MyCall</h1>
+            <p>A group video calling platform made just for you!</p>
+        </div>
+        <form id="form">
+          <div class="field-wrapper">
+            <div class="container mt-5">
+              <div class="form-field">
+                <!-- Create a signup and signin button -->
+                <a href="{% url 'register' %}" class="btn">Sign Up</a>
+              </div>
+              <div class="form-field">
+                <!-- Create a signup and signin button -->
+                <a href="{% url 'login' %}" class="btn">Sign In</a>
+            </div>
+          </div>
+        </form>
+      </section> 
+      <div class="image-button-container">
+          <button class="image-button">
+              <a href="quick-chat">
+                  <img src="{% static 'images/chat-4-32.ico' %}" alt="Quick Image">
+              </a>
+          </button>
+      </div>
+  </main> 
+{% endblock content %}
